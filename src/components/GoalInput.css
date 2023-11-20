@@ -1,0 +1,19 @@
+article{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+article input{
+    padding: 1rem;
+    font-size: 26px;
+}
+
+.texto{
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: peru;
+    padding: 1rem;
+    width: fit-content;
+    margin: 0;
+}
