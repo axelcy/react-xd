@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import './GoalInput.css'
+import { useContext } from 'react'
+import { ThemeContext } from '../context/ThemeContext'
 
-function GoalInput() {
+function GoalInput({ children }) {
+    const {theme, setTheme} = useContext(ThemeContext)
+
     const [listaTextos, setListaTextos] = useState([])
     const [contador, setContador] = useState(0)
     const inputRef = useRef()
@@ -14,7 +18,7 @@ function GoalInput() {
         setContador(listaTextos.length)
     }, [listaTextos])
 
-    const agregarTexto = () => {
+    const handleClick = () => {
         let nuevoTexto = inputRef.current.value
         setListaTextos([...listaTextos, nuevoTexto])
     }
@@ -22,13 +26,17 @@ function GoalInput() {
     return (
         <article>
             <h2>La lista tiene {contador} elementos</h2>
+            <h4>Contexto: {theme}</h4>
             <input type="text" ref={inputRef} />
-            <button onClick={agregarTexto}>Boton xd</button>
-            {
-                listaTextos.map((texto, index) => (
-                    <p key={index} className='texto'>{texto}</p>
-                ))
-            }
+            {children}
+            <button onClick={handleClick}>Boton xd</button>
+            <div className='lista-textos'>
+                {
+                    listaTextos.map((texto, index) => (
+                        <p key={index} className='texto'>{texto}</p>
+                    ))
+                }
+            </div>
         </article>
     )
 }
