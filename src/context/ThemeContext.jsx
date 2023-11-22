@@ -5,6 +5,7 @@ export const ThemeContext = createContext()
 
 // 2. El provider
 export const ThemeProvider = ({ children }) => {
+    // Si el estado es un OBJETO, usar:     JSON.parse y JSON.stringify
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'white')
 
     let colors = {
@@ -16,8 +17,13 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem('theme', theme)
 
     return(
+        // Esto es el provider:
         <ThemeContext.Provider value={{ theme, setTheme }}>
             {children}
         </ThemeContext.Provider>
+        // La app se envuelve en el provider para que todos los componentes tengan acceso a su valor. (/src/main.jsx)
+        // En este caso, el valor que le indicamos es un objeto con usuario y setUsuario.
+        // usuario es un estado, y setUsuario la función que lo modifica.
+        // Esto nos permite acceder a un estado en toda la app, se le llama estado global.
     )
 }
