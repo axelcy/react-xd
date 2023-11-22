@@ -16,6 +16,7 @@ function GoalInput({ children }) {
 
     useEffect(() => {
         setContador(listaTextos.length)
+        localStorage.setItem('listaTextos', JSON.stringify(listaTextos))
     }, [listaTextos])
 
     const handleClick = () => {

@@ -5,7 +5,7 @@ export const ThemeContext = createContext()
 
 // 2. El provider
 export const ThemeProvider = ({ children }) => {
-    // Si el estado es un OBJETO, usar:     JSON.parse y JSON.stringify
+    // Si el estado es un OBJETO, usar:     JSON.parse(OBJETO) y JSON.stringify(OBJETO)
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'white')
 
     let colors = {
