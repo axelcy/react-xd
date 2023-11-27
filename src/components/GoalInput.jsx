@@ -6,7 +6,7 @@ import { ThemeContext } from '../context/ThemeContext'
 function GoalInput({ children }) {
     const {theme, setTheme} = useContext(ThemeContext)
 
-    const [listaTextos, setListaTextos] = useState([])
+    const [listaTextos, setListaTextos] = useState(JSON.parse(localStorage.getItem('listaTextos')) || [])
     const [contador, setContador] = useState(0)
     const inputRef = useRef()
 
@@ -24,6 +24,11 @@ function GoalInput({ children }) {
         setListaTextos([...listaTextos, nuevoTexto])
     }
 
+    const checkearTexto = (index) => {
+        let texto = document.getElementById(`texto-${index}`)
+        texto.classList.toggle('tachado')
+    }
+
     return (
         <article>
             <h2>La lista tiene {contador} elementos</h2>
@@ -34,7 +39,10 @@ function GoalInput({ children }) {
             <div className='lista-textos'>
                 {
                     listaTextos.map((texto, index) => (
-                        <p key={index} className='texto'>{texto}</p>
+                        <p key={index} className='texto'>
+                            <input type="checkbox" onClick={() => checkearTexto(index)} />
+                            <span id={`texto-${index}`}>{texto}</span>
+                        </p>
                     ))
                 }
             </div>

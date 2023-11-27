@@ -25,3 +25,7 @@ article input{
     flex-direction: column;
     gap: 1rem;
 }
+
+.tachado{
+    text-decoration: line-through;
+}
